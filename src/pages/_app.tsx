@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import type { AppProps } from "next/app";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
@@ -6,6 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
+      <Header />
       <Component {...pageProps} />
     </>
   );
