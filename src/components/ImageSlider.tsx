@@ -13,8 +13,8 @@ export default function ImageSlider({
   return (
     <>
       <StyledSwiper
-        spaceBetween={50}
-        slidesPerView={2}
+        spaceBetween={800}
+        slidesPerView={1.2}
         loop={true}
         centeredSlides={true}
         mousewheel={
@@ -28,11 +28,11 @@ export default function ImageSlider({
         }}
         modules={[Mousewheel, Pagination]}
       >
-        <SwiperSlide><img src={imgSrc[0]} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={imgSrc[1]} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={imgSrc[2]} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={imgSrc[3]} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={imgSrc[4]} alt="" /></SwiperSlide>
+        <StyledSwiperSlide><img src={imgSrc[0]} alt="" /></StyledSwiperSlide>
+        <StyledSwiperSlide><img src={imgSrc[1]} alt="" /></StyledSwiperSlide>
+        <StyledSwiperSlide><img src={imgSrc[2]} alt="" /></StyledSwiperSlide>
+        <StyledSwiperSlide><img src={imgSrc[3]} alt="" /></StyledSwiperSlide>
+        <StyledSwiperSlide><img src={imgSrc[4]} alt="" /></StyledSwiperSlide>
       </StyledSwiper>
     </>
   )
@@ -45,5 +45,21 @@ const StyledSwiper = styled(Swiper)`
 
   .swiper-pagination {
     text-align: center;
+  }
+`;
+
+const StyledSwiperSlide = styled(SwiperSlide)`
+  // ToDo 画面の高さと幅が変わった時に、常に比率を同じにしたい
+  height: 75vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    max-height: 720px;
+    max-width: 1280px;
+    object-fit: cover;
   }
 `;
