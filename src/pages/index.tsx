@@ -2,7 +2,15 @@ import { poppinsFont } from "../styles/fonts";
 import styled from "styled-components";
 import FixedBg from "@/components/FixedBg";
 
-export default function Home() {
+export async function getStaticProps() {
+  return {
+    props: {
+      layout: "top",
+    },
+  };
+}
+
+export default function Top() {
   return (
     <>
       <FixedBg>

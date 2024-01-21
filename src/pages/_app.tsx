@@ -1,19 +1,19 @@
 import Header from "@/components/Header";
 import type { AppProps } from "next/app";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 import reset from "styled-reset";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyle page={pageProps.layout} />
       <Header />
       <Component {...pageProps} />
     </>
   );
 }
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<{ page: string }>`
   ${reset}
 
   *,
@@ -28,7 +28,12 @@ const GlobalStyle = createGlobalStyle`
     background: #1A1A1A;
     color: #FFFFFF;
     letter-spacing: 0.4px;
-    overflow: hidden;
+    min-height: 100vh;
+    height: 100vh;
+  }
+
+  #__next {
+    height: inherit;
   }
 
   img {
@@ -44,5 +49,20 @@ const GlobalStyle = createGlobalStyle`
       text-decoration: none;
       color: #FFFFFF;
     }
+  }
+
+  ${(props) =>
+    props.page == "top"
+    // props.page == "top" || "works"
+      ? css`
+        body {
+          overflow-y: scroll;
+          position: fixed;
+        }
+      ` : css`
+        body {
+          overflow-y: scroll;
+        }
+      `
   }
 `;
