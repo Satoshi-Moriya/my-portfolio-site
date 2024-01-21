@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper/modules";
@@ -13,7 +12,7 @@ export default function ImageSlider({
   return (
     <>
       <StyledSwiper
-        spaceBetween={800}
+        spaceBetween={200}
         slidesPerView={1.2}
         loop={true}
         centeredSlides={true}
@@ -50,7 +49,8 @@ const StyledSwiper = styled(Swiper)`
 
 const StyledSwiperSlide = styled(SwiperSlide)`
   // ToDo 画面の高さと幅が変わった時に、常に比率を同じにしたい
-  height: 75vh;
+  // JSで複雑な処理になりそうなので、一旦なしで対応
+  height: 67vh;
   overflow: hidden;
   display: flex;
   align-items: center;
