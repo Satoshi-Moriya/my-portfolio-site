@@ -3,6 +3,7 @@ import { poppinsFont } from "../styles/fonts";
 import styled from "styled-components";
 import { MicroCMSContentId, MicroCMSDate, MicroCMSImage } from "microcms-js-sdk";
 import { client } from "@/libs/client";
+import { motion } from "framer-motion";
 
 export type Work = {
   title: string;
@@ -32,7 +33,7 @@ export default function Works({
 
   return (
     <>
-      <Title>
+      <Title layoutId="logoTitle">
         <span><BigText>C</BigText>reating</span>
         <span>&nbsp;is&nbsp;</span>
         <BigPinkText>FUN !!</BigPinkText>
@@ -42,7 +43,7 @@ export default function Works({
   );
 }
 
-const Title = styled.h2`
+const Title = styled(motion.h2)`
   font-family: ${poppinsFont.style.fontFamily}, sans-serif;
   letter-spacing: 0.02px;
   font-size: 30px;
