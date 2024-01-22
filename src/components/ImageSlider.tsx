@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper/modules";
-import "swiper/css"
+import "swiper/css";
+import { motion } from "framer-motion";
 
 export default function ImageSlider({
    imgSrc,
@@ -10,7 +11,21 @@ export default function ImageSlider({
 }) {
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: { delay: 0.5 },
+      }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      style={{
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%,-50%)",
+        position: "relative"
+      }}
+    >
       <StyledSwiper
         spaceBetween={200}
         slidesPerView={1.2}
@@ -33,14 +48,14 @@ export default function ImageSlider({
         <StyledSwiperSlide><img src={imgSrc[3]} alt="" /></StyledSwiperSlide>
         <StyledSwiperSlide><img src={imgSrc[4]} alt="" /></StyledSwiperSlide>
       </StyledSwiper>
-    </>
+    </motion.div>
   )
 }
 
 const StyledSwiper = styled(Swiper)`
-  top: 50%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
 
   .swiper-pagination {
     text-align: center;
