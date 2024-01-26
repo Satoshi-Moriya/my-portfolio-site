@@ -6,8 +6,15 @@ import { client } from "@/libs/client";
 import { motion } from "framer-motion";
 
 export type Work = {
+  enTitle: string;
   title: string;
   mv?: MicroCMSImage;
+  type: string[];
+  release?: string;
+  role?: string;
+  url?: string;
+  explanation: string;
+  wholeImg?: MicroCMSImage;
 } & MicroCMSDate & MicroCMSContentId;
 
 export async function getStaticProps() {
