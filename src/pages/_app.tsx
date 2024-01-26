@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle<{ page: string }>`
     letter-spacing: 0.4px;
     min-height: 100vh;
     height: 100vh;
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
   }
 
   #__next {
