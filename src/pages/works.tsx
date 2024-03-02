@@ -1,4 +1,4 @@
-import ImageSlider from "@/components/ImageSlider";
+import WorkList from "@/components/WorkList";
 import { poppinsFont } from "../styles/fonts";
 import styled from "styled-components";
 import { MicroCMSContentId, MicroCMSDate, MicroCMSImage } from "microcms-js-sdk";
@@ -45,12 +45,14 @@ export default function Works({
         <span>&nbsp;is&nbsp;</span>
         <BigPinkText>FUN !!</BigPinkText>
       </Title>
-      <ImageSlider imgSrc={imageSrc} />
+      <Container>
+        <WorkList works={works} />
+      </Container>
     </>
   );
 }
 
-const Title = styled(motion.h2)`
+const Title = styled(motion.div)`
   font-family: ${poppinsFont.style.fontFamily}, sans-serif;
   letter-spacing: 0.02px;
   font-size: 30px;
@@ -70,4 +72,11 @@ const BigText = styled.span`
 const BigPinkText = styled.span`
   font-size: 50px;
   color: #F4B9C5;
+`;
+
+const Container = styled.div`
+  margin: 150px auto 0;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
 `;
