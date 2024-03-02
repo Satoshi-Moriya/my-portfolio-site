@@ -3,21 +3,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper/modules";
 import "swiper/css";
 import { motion } from "framer-motion";
+import { Work } from "@/pages/works";
+import Link from "next/link";
 
 export default function ImageSlider({
-   imgSrc,
+   works,
 }: {
-  imgSrc: string[];
+  works: Work[];
 }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 0.5 },
-      }}
-      exit={{ opacity: 0 }}
+      // initial={{ opacity: 0 }}
+      // animate={{
+      //   opacity: 1,
+      //   transition: { delay: 0.5 },
+      // }}
+      // exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
       style={{
         top: "50%",
@@ -42,11 +44,17 @@ export default function ImageSlider({
         }}
         modules={[Mousewheel, Pagination]}
       >
-        <StyledSwiperSlide><img src={imgSrc[0]} alt="" /></StyledSwiperSlide>
-        <StyledSwiperSlide><img src={imgSrc[1]} alt="" /></StyledSwiperSlide>
-        <StyledSwiperSlide><img src={imgSrc[2]} alt="" /></StyledSwiperSlide>
-        <StyledSwiperSlide><img src={imgSrc[3]} alt="" /></StyledSwiperSlide>
-        <StyledSwiperSlide><img src={imgSrc[4]} alt="" /></StyledSwiperSlide>
+        {
+          works.map(({ id, title, mv }) => (
+            <StyledSwiperSlide key={id}>
+              <Link href={`/works/${id}`}>
+                <motion.figure layoutId={`mv_${id}`}>
+                  <img src={mv?.url} alt={title} />
+                </motion.figure>
+              </Link>
+            </StyledSwiperSlide>
+          ))
+        }
       </StyledSwiper>
     </motion.div>
   )

@@ -45,7 +45,7 @@ export default function Works({
         <span>&nbsp;is&nbsp;</span>
         <BigPinkText>FUN !!</BigPinkText>
       </Title>
-      <ImageSlider imgSrc={imageSrc} />
+      <ImageSlider works={works} />
     </>
   );
 }

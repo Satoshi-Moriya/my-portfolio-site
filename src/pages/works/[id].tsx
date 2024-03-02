@@ -41,7 +41,7 @@ export default function Work({
         <BigPinkText>FUN !!</BigPinkText>
       </Title>
       <WorkContents>
-        <MvWrap>
+        <MvWrap layoutId={`mv_${work.id}`}>
           <Mv
             src={work.mv?.url}
             alt=""
@@ -97,7 +97,8 @@ const BigPinkText = styled.span`
   color: #F4B9C5;
 `;
 
-const MvWrap = styled.figure`
+// const MvWrap = styled.figure`
+const MvWrap = styled(motion.figure)`
   background-color: #000000;
   height: 100vh;
   width: 100%;
@@ -109,7 +110,7 @@ const Mv = styled(motion.img)`
   height: 100vh;
   width: 100%;
   object-fit: cover;
-  opacity: 0.5;
+  /* opacity: 0.5; */
 `;
 
 const WorkContents = styled.main`
