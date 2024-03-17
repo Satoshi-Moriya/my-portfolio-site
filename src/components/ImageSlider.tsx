@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper/modules";
-import "swiper/css"
 import { motion } from "framer-motion";
 import { Work } from "@/pages/works";
 import Link from "next/link";
