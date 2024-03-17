@@ -42,7 +42,7 @@ const NavLink = styled(
     { href, isActive, children, ...props }:
     { href: string, isActive: boolean, children: string, }
   ) => (
-    <Link href={href} {...props} >
+    <Link href={href} {...props} scroll={false} >
       {children}
     </Link>
   )
