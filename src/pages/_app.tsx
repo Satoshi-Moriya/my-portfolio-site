@@ -72,18 +72,7 @@ const GlobalStyle = createGlobalStyle<{ page: string }>`
     }
   }
 
-  ${(props) =>
-    props.page == "top"
-    // props.page == "top" || "works"
-      ? css`
-        body {
-          overflow-y: scroll;
-          position: fixed;
-        }
-      ` : css`
-        body {
-          overflow-y: scroll;
-        }
-      `
+  body {
+    overflow-y: scroll;
   }
 `;
