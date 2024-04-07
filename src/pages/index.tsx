@@ -2,6 +2,9 @@ import { poppinsFont } from "../styles/fonts";
 import styled from "styled-components";
 import FixedBg from "@/components/FixedBg";
 import { motion } from "framer-motion";
+import { usePageTransition } from "@/components/PageTransitionContext";
+import { useEffect } from "react";
+
 
 export async function getStaticProps() {
   return {
@@ -12,6 +15,12 @@ export async function getStaticProps() {
 }
 
 export default function Top() {
+  const { setTransitionFrom } = usePageTransition();
+
+  useEffect(() => {
+    setTransitionFrom("top");
+  }, []);
+
   return (
     <>
       <FixedBg>
@@ -26,7 +35,6 @@ export default function Top() {
     </>
   );
 }
-
 
 const TitleWrap = styled.div`
   height: inherit;

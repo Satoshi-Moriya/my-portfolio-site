@@ -1,9 +1,12 @@
-import WorkList from "@/components/WorkList";
 import { poppinsFont } from "../styles/fonts";
 import styled from "styled-components";
 import { MicroCMSContentId, MicroCMSDate, MicroCMSImage } from "microcms-js-sdk";
 import { client } from "@/libs/client";
+import LogoTitle from "@/components/LogoTitle";
+import ImageSlider from "@/components/ImageSlider";
 import { motion } from "framer-motion";
+import { usePageTransition } from "@/components/PageTransitionContext";
+
 
 export type Work = {
   enTitle: string;
@@ -32,6 +35,8 @@ export default function Works({
 }: {
   works: Work[];
 }) {
+  const { transitionFrom } = usePageTransition();
+  console.log(transitionFrom)
 
   const imageSrc = works.map((work, index) => (
     // ToDo no-imgを用意する？
@@ -40,19 +45,34 @@ export default function Works({
 
   return (
     <>
-      <Title layoutId="logoTitle">
-        <span><BigText>C</BigText>reating</span>
-        <span>&nbsp;is&nbsp;</span>
-        <BigPinkText>FUN !!</BigPinkText>
-      </Title>
-      <Container>
-        <WorkList works={works} />
-      </Container>
+      {transitionFrom === "work" && (
+        <motion.div
+          initial={{
+            right: '0%',
+          }}
+          animate={{
+            right: '-100%',
+            transition: {
+              duration: 1,
+              ease: [0.8, 0, 0.5, 1]
+            },
+          }}
+          style={{
+            position: "fixed",
+            zIndex: "101",
+            backgroundColor: "#000000",
+            height: "100%",
+            width: "100%",
+          }}
+        />
+      )}
+      <LogoTitle />
+      <ImageSlider works={works} />
     </>
   );
 }
 
-const Title = styled(motion.div)`
+const Title = styled.h2`
   font-family: ${poppinsFont.style.fontFamily}, sans-serif;
   letter-spacing: 0.02px;
   font-size: 30px;
@@ -72,11 +92,4 @@ const BigText = styled.span`
 const BigPinkText = styled.span`
   font-size: 50px;
   color: #F4B9C5;
-`;
-
-const Container = styled.div`
-  margin: 150px auto 0;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
 `;

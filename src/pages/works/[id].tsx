@@ -1,10 +1,11 @@
-import { client } from "@/libs/client";
-import { useRouter } from "next/router";
-import React from "react";
-import { Work } from "../works";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { Work } from "../works";
 import { poppinsFont } from "../../styles/fonts";
+import { client } from "@/libs/client";
+import { usePageTransition } from "@/components/PageTransitionContext";
+
 
 export async function getStaticPaths() {
   const data = await client.get({ endpoint: "works" });
@@ -31,22 +32,55 @@ export default function Work({
 }: {
   work: Work;
 }) {
-  const router = useRouter();
+  const { setTransitionFrom } = usePageTransition();
+
+  useEffect(() => {
+    setTransitionFrom("work");
+  }, []);
 
   return (
     <>
-      <Title layoutId="logoTitle">
+      <motion.div
+        initial={{
+          right: '100%',
+        }}
+        exit={{
+          right: '0%',
+          transition: {
+            duration: 1,
+            ease: [0.8, 0, 0.5, 1]
+          },
+        }}
+        style={{
+          position: "fixed",
+          zIndex: "101",
+          backgroundColor: "#000000",
+          height: "100%",
+          width: "100%",
+        }}
+      />
+       {/* ToDo LogoTitleを使っていい感じにできないか検討する */}
+      <Title>
         <span><BigText>C</BigText>reating</span>
         <span>&nbsp;is&nbsp;</span>
         <BigPinkText>FUN !!</BigPinkText>
       </Title>
-      <WorkContents>
-        <MvWrap>
-          <Mv
-            src={work.mv?.url}
-            alt=""
-          />
-        </MvWrap>
+      <MvWrap
+        layoutId={`mv_${work.id}`}
+        transition={{ duration: 0.5 }}
+      >
+        <Mv
+          src={work.mv?.url}
+          alt={work.title}
+        />
+      </MvWrap>
+      <WorkContents
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition:{ duration: 0.2, delay: 0.5}
+        }}
+      >
         <WorkDetails>
           <WorkDetailsHeader>
             <WorkDetailsHeaderTitle>{work.enTitle}</WorkDetailsHeaderTitle>
@@ -75,7 +109,7 @@ export default function Work({
   );
 }
 
-const Title = styled(motion.h2)`
+const Title = styled.h2`
   font-family: ${poppinsFont.style.fontFamily}, sans-serif;
   letter-spacing: 0.02px;
   font-size: 30px;
@@ -97,7 +131,7 @@ const BigPinkText = styled.span`
   color: #F4B9C5;
 `;
 
-const MvWrap = styled.figure`
+const MvWrap = styled(motion.figure)`
   background-color: #000000;
   height: 100vh;
   width: 100%;
@@ -105,14 +139,15 @@ const MvWrap = styled.figure`
   z-index: -1;
 `;
 
-const Mv = styled(motion.img)`
-  height: 100vh;
+// const Mv = styled(motion.img)`
+const Mv = styled.img`
+  height: 100%;
   width: 100%;
   object-fit: cover;
   opacity: 0.5;
 `;
 
-const WorkContents = styled.main`
+const WorkContents = styled(motion.main)`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -128,7 +163,7 @@ const WorkDetailsHeader = styled.div`
   height: calc(100vh - 100px);
 `;
 
-const WorkDetailsHeaderTitle = styled.h1`
+const WorkDetailsHeaderTitle = styled(motion.h1)`
   font-family: ${poppinsFont.style.fontFamily}, sans-serif;
   letter-spacing: 0.02px;
   font-size: 7vw;
