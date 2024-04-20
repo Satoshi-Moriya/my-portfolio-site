@@ -25,7 +25,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       <GlobalStyle page={pageProps.layout} />
       <Header />
       <PageTransitionProvider>
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="wait">
             <Component key={router.asPath} {...pageProps} />
         </AnimatePresence>
       </PageTransitionProvider>

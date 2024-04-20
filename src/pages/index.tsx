@@ -3,7 +3,6 @@ import styled from "styled-components";
 import FixedBg from "@/components/FixedBg";
 import { motion } from "framer-motion";
 import { usePageTransition } from "@/components/PageTransitionContext";
-import { useEffect } from "react";
 
 
 export async function getStaticProps() {
@@ -15,14 +14,33 @@ export async function getStaticProps() {
 }
 
 export default function Top() {
-  const { setTransitionFrom } = usePageTransition();
-
-  useEffect(() => {
-    setTransitionFrom("top");
-  }, []);
+  const { transitionFrom } = usePageTransition();
 
   return (
     <>
+      {transitionFrom === "first load" && (
+        <motion.div
+          initial={{
+            right: '0%',
+          }}
+          animate={{
+            right: '-100%',
+            transition: {
+              duration: 1,
+              ease: [0.8, 0, 0.5, 1]
+            },
+          }}
+          style={{
+            position: "fixed",
+            zIndex: "101",
+            backgroundColor: "#000000",
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <div>Satoshi Moriya</div>
+        </motion.div>
+      )}
       <FixedBg>
         <TitleWrap>
           <Title layoutId="logoTitle">
