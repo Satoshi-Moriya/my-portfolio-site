@@ -12,7 +12,7 @@ export const PageTransitionProvider = (
   { children }:
   {children: ReactNode}
 ) => {
-  const [transitionFrom, setTransitionFrom] = useState("");
+  const [transitionFrom, setTransitionFrom] = useState("first load");
 
   return (
     <PageTransitionContext.Provider value={{ transitionFrom, setTransitionFrom }}>

@@ -6,6 +6,7 @@ import LogoTitle from "@/components/LogoTitle";
 import ImageSlider from "@/components/ImageSlider";
 import { motion } from "framer-motion";
 import { usePageTransition } from "@/components/PageTransitionContext";
+import { useEffect } from "react";
 
 
 export type Work = {
@@ -35,13 +36,17 @@ export default function Works({
 }: {
   works: Work[];
 }) {
-  const { transitionFrom } = usePageTransition();
+  const { transitionFrom, setTransitionFrom } = usePageTransition();
   console.log(transitionFrom)
 
   const imageSrc = works.map((work, index) => (
     // ToDo no-imgを用意する？
     work.mv ? work.mv.url : "/no-img.png"
   ));
+
+  useEffect(() => {
+    setTransitionFrom("works");
+  }, []);
 
   return (
     <>

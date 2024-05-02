@@ -3,8 +3,7 @@ import styled from "styled-components";
 import FixedBg from "@/components/FixedBg";
 import { motion } from "framer-motion";
 import { usePageTransition } from "@/components/PageTransitionContext";
-import { useEffect } from "react";
-
+import Loading from "@/components/Loading";
 
 export async function getStaticProps() {
   return {
@@ -15,14 +14,13 @@ export async function getStaticProps() {
 }
 
 export default function Top() {
-  const { setTransitionFrom } = usePageTransition();
-
-  useEffect(() => {
-    setTransitionFrom("top");
-  }, []);
+  const { transitionFrom } = usePageTransition();
 
   return (
     <>
+      {transitionFrom === "first load" && (
+        <Loading />
+      )}
       <FixedBg>
         <TitleWrap>
           <Title layoutId="logoTitle">
