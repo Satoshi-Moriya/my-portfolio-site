@@ -75,58 +75,38 @@ export default function Top() {
   return (
     <>
       {transitionFrom === "first load" && (
-        <motion.div
+        <Loading
           variants={topLoading}
           animate={isVisible ? "visible" : "hidden"}
-          style={{
-            position: "fixed",
-            right: "0%",
-            zIndex: "101",
-            backgroundColor: "#000000",
-            height: "100%",
-            width: "100%",
-          }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-            }}
-          >
-            <SlimyUpText>
-              <SlimyUpTextInnerWrap>
-                <motion.span
-                  variants={topLoadingText}
-                  style={{
-                    overflow: "hidden",
-                    transform: "matrix(1, 0, 0, 1, 0, 100)",
-                    display: "block",
-                    fontFamily : `${poppinsFont.style.fontFamily}, sans-serif`
-                  }}
-                  onAnimationComplete={() => setIsVisible(false)}
-                >
-                  Satoshi Moriya
-                </motion.span>
-                <motion.span
-                  variants={topLoadingLine}
-                  style={{
-                    marginTop: "30px",
-                    background: "#FFFFFF",
-                    opacity: "0.5",
-                    display: "block",
-                    height: "1px",
-                    width: "100%",
-                    right: "100%",
-                    position: "relative",
-                    backfaceVisibility: "hidden",
-                  }}
-                ></motion.span>
-              </SlimyUpTextInnerWrap>
-            </SlimyUpText>
-          </div>
-        </motion.div>
+          <LoadingInner>
+            <LoadingContents>
+              <LoadingText
+                variants={topLoadingText}
+                onAnimationComplete={() => setIsVisible(false)}
+              >
+                Satoshi Moriya
+              </LoadingText>
+              {/* ToDo:調査&修正
+              下記の要素もCSS in JSに変換させたいが、最初発火するアニメーション
+              なので（？）うまくいかないから下記だけそまま */}
+              <motion.span
+                variants={topLoadingLine}
+                style={{
+                  marginTop: "30px",
+                  background: "#FFFFFF",
+                  opacity: "0.5",
+                  display: "block",
+                  height: "1px",
+                  width: "100%",
+                  right: "100%",
+                  position: "relative",
+                  backfaceVisibility: "hidden",
+                }}
+              ></motion.span>
+            </LoadingContents>
+          </LoadingInner>
+        </Loading>
       )}
       <FixedBg>
         <TitleWrap>
@@ -167,19 +147,30 @@ const BigPinkText = styled.span`
   color: #F4B9C5;
 `;
 
-const SlimyUpText = styled.p`
-
+const Loading = styled(motion.div)`
+  position: fixed;
+  right: 0%;
+  z-index: 101;
+  background-color: #000000;
+  height: 100%;
+  width: 100%;
 `;
 
-const SlimyUpTextInnerWrap = styled.span`
+const LoadingInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
+
+const LoadingContents = styled.div`
   overflow: hidden;
   display: block;
 `;
 
-// const SlimyUpTextInner = styled(motion.span)`
-//   overflow: hidden;
-//   transform: matrix(1, 0, 0, 1, 0, 100);
-//   transition: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-//   display: block;
-//   font-family : ${poppinsFont.style.fontFamily}, sans-serif;
-// `;
+const LoadingText = styled(motion.span)`
+  overflow: hidden;
+  transform: matrix(1, 0, 0, 1, 0, 100);
+  display: block;
+  font-family: ${poppinsFont.style.fontFamily}, sans-serif;
+`;
