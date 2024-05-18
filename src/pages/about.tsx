@@ -1,8 +1,8 @@
-import LogoTitle from '@/components/LogoTitle'
-import { usePageTransition } from '@/components/PageTransitionContext';
-import { motion } from 'framer-motion';
-import React, { useEffect } from 'react'
-import styled from 'styled-components';
+import LogoTitle from "@/components/LogoTitle"
+import { usePageTransition } from "@/components/PageTransitionContext";
+import { motion } from "framer-motion";
+import React, { useEffect } from "react"
+import styled from "styled-components";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
@@ -10,6 +10,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
+import Image from "next/image";
 
 
 export default function About() {
@@ -30,7 +31,7 @@ export default function About() {
         }}
       >
         <AboutImageWrapper>
-          <img src="/images/about.png" alt="森屋 敏" />
+          <Image src="/images/about.png" alt="森屋 敏" width={960} height={640} />
         </AboutImageWrapper>
         <AboutTextWrapper>
           <AboutTitle>
