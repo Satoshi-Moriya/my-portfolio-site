@@ -43,6 +43,8 @@ export default function About() {
             <p>都内の受託系の開発会社でWebエンジニアをやっております。</p>
             <p>個人でWebサイト制作のお仕事もおこなっております。</p>
             <p>ドラムが好き。ドラマーとしても活動中。</p>
+            <br />
+            <p>お仕事のご依頼・ご相談などはメールや各SNSのDMからお気軽にお問い合わせください。</p>
           </AboutDescription>
         </AboutTextWrapper>
         <AboutExternalLinks>
