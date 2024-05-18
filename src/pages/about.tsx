@@ -14,7 +14,7 @@ import Image from "next/image";
 
 
 export default function About() {
-  const { transitionFrom, setTransitionFrom } = usePageTransition();
+  const { setTransitionFrom } = usePageTransition();
 
   useEffect(() => {
     setTransitionFrom("about");
@@ -132,7 +132,6 @@ const AboutTitle = styled.div`
 const AboutDescription = styled.div`
   margin-top: 24px;
 `;
-
 
 const AboutExternalLinks = styled.div`
   grid-column: 1 / 3;
