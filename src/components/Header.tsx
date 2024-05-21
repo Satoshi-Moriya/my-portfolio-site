@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import NavLinks from "./NavLinks";
+import { media } from "@/utils/media";
 
 export default function Header() {
   return (
@@ -23,7 +24,12 @@ const StyledHeader = styled.header`
 `;
 
 const HeaderRight = styled.div`
-  position: fixed;
-  top: 30px;
-  right: 30px;
+  display: none;
+
+  ${media.sm`
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+  `}
 `;
