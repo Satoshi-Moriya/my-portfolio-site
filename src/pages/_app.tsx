@@ -5,8 +5,8 @@ import reset from "styled-reset";
 import { AnimatePresence } from 'framer-motion'
 import { useEffect } from "react";
 import { PageTransitionProvider } from "@/components/PageTransitionContext";
-import "swiper/css"
-
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function App({ Component, pageProps, router }: AppProps) {
 
