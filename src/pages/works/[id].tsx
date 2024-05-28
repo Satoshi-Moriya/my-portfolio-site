@@ -5,6 +5,7 @@ import { Work } from "../works";
 import { poppinsFont } from "../../styles/fonts";
 import { client } from "@/libs/client";
 import { usePageTransition } from "@/components/PageTransitionContext";
+import { media } from "@/utils/media";
 
 
 export async function getStaticPaths() {
@@ -132,19 +133,28 @@ const BigPinkText = styled.span`
 `;
 
 const MvWrap = styled(motion.figure)`
-  background-color: #000000;
-  height: 100vh;
-  width: 100%;
-  position: fixed;
+  position: relative;
+  top: 200px;
   z-index: -1;
+
+  ${media.sm`
+    top: auto;
+    position: fixed;
+    display: block;
+    background-color: #000000;
+    height: 100vh;
+    width: 100%;
+  `}
 `;
 
-// const Mv = styled(motion.img)`
 const Mv = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
-  opacity: 0.5;
+
+  ${media.sm`
+    opacity: 0.5;
+  `}
 `;
 
 const WorkContents = styled(motion.main)`
@@ -152,15 +162,32 @@ const WorkContents = styled(motion.main)`
   display: flex;
   justify-content: center;
   padding-bottom: 100px;
+  margin-top: 200px;
+
+  ${media.sm`
+    margin-top: 0;
+  `}
 `;
 
 const WorkDetails = styled.div`
-  margin-top: 100px;
-  width: 60%;
+  width: 90%;
+  max-width: 600px;
+
+  ${media.sm`
+    margin-top: 100px;
+    width: 60%;
+  `}
 `;
 
 const WorkDetailsHeader = styled.div`
-  height: calc(100vh - 100px);
+  // ToDo #_nextが基準、影響範囲が広いので修正した方が良いかも
+  position: absolute;
+  top: 125px;
+
+  ${media.sm`
+    position: static;
+    height: calc(100vh - 100px);
+  `}
 `;
 
 const WorkDetailsHeaderTitle = styled(motion.h1)`

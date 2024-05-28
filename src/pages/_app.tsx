@@ -55,6 +55,8 @@ const GlobalStyle = createGlobalStyle<{ page: string }>`
 
   #__next {
     height: inherit;
+    // ToDo work個別ページのsmサイズ以下のためだけにつけるのは怖い
+    position: relative;
   }
 
   img {
