@@ -1,5 +1,3 @@
-import { poppinsFont } from "../styles/fonts";
-import styled from "styled-components";
 import { MicroCMSContentId, MicroCMSDate, MicroCMSImage } from "microcms-js-sdk";
 import { client } from "@/libs/client";
 import LogoTitle from "@/components/LogoTitle";
@@ -76,25 +74,3 @@ export default function Works({
     </>
   );
 }
-
-const Title = styled.h2`
-  font-family: ${poppinsFont.style.fontFamily}, sans-serif;
-  letter-spacing: 0.02px;
-  font-size: 30px;
-  font-weight: 700;
-  white-space: nowrap;
-  line-height: 1;
-  position: fixed;
-  // 25pxは検証ツールでメニューと比較していい感じの場所になった時の数値
-  top: 25px;
-  left: 50px;
-`;
-
-const BigText = styled.span`
-  font-size: 50px;
-`;
-
-const BigPinkText = styled.span`
-  font-size: 50px;
-  color: #F4B9C5;
-`;
