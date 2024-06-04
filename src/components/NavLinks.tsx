@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import styled from "styled-components";
 
 import { poppinsFont } from "@/styles/fonts";
+import { media } from "@/utils/media";
 
 const links = [
   { name: "Top", href: "/", },
@@ -33,7 +34,11 @@ export default function NavLinks() {
 }
 
 const StyledNavLinks = styled.nav`
-  display: flex;
+  display: none;
+
+  ${media.sm`
+    display: flex;
+  `}
 `
 
 const NavLink = styled(
