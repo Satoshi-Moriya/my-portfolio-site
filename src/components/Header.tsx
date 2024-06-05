@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <StyledHeader>
       <HeaderRight>
-        <NavLinks />
+        <NavLinks openMenu={openMenu} />
         <MenuButton onClick={() => menuFunc()}>
           <MenuButtonBar $openMenu={openMenu} />
           <MenuButtonBar $openMenu={openMenu} />
@@ -67,7 +67,9 @@ const MenuButton = styled.div`
 `;
 
 const MenuButtonBar = styled.span<{ $openMenu: boolean }>`
-  background-color: #FFFFFF;
+  ${({ $openMenu }) => $openMenu ? `
+    background-color: #1A1A1A;
+  ` : `background-color: #FFFFFF;`}
   width: 30px;
   height: 1px;
   display: block;

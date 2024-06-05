@@ -11,11 +11,15 @@ const links = [
   { name: "Works", href: "/works", },
 ];
 
-export default function NavLinks() {
+export default function NavLinks({
+  openMenu
+}: {
+  openMenu: boolean
+}) {
   const pathname = usePathname();
 
   return(
-    <StyledNavLinks>
+    <StyledNavLinks $openMenu={openMenu}>
       {
         links.map((link) => {
           return (
@@ -33,11 +37,22 @@ export default function NavLinks() {
   );
 }
 
-const StyledNavLinks = styled.nav`
-  display: none;
+const StyledNavLinks = styled.nav<{ $openMenu: boolean }>`
+  ${({ $openMenu }) => $openMenu ? `
+    display: flex;
+  ` : `display: none;`}
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  height: 100svh;
 
   ${media.sm`
     display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: transparent;
+    height: auto;
   `}
 `
 
@@ -51,11 +66,24 @@ const NavLink = styled(
     </Link>
   )
 )`
-  color: #FFFFFF;
-  text-shadow: 0 1px 3px #1A1A1A;
+  color: #1A1A1A;
   position: relative;
-  padding: 10px 20px;
-  font-family: ${poppinsFont.style.fontFamily}, sans-serif;
+  padding: 20px;
+
+  &:hover {
+    color: #1A1A1A;
+  }
+
+  ${media.sm`
+    padding: 10px 20px;
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px #1A1A1A;
+    font-family: ${poppinsFont.style.fontFamily}, sans-serif;
+
+    &:hover {
+      color: #FFFFFF;
+    }
+  `}
 
   &:before {
     background-color: #FFFFFF;
@@ -73,7 +101,6 @@ const NavLink = styled(
   }
 
   ${({ isActive }) => isActive && `
-
     &:before {
       transform: scale(1, 1);
     }
