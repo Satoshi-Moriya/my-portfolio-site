@@ -1,8 +1,24 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 import NavLinks from "./NavLinks";
 import { media } from "@/utils/media";
+
+const menuHeight = {
+  open: {
+    height: "100svh",
+    transition: {
+      when: "beforeChildren"
+    },
+  },
+  closed: {
+    height: "auto",
+    transition: {
+      when: "afterChildren"
+    }
+  }
+};
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -12,13 +28,16 @@ export default function Header() {
 
   return (
     <StyledHeader>
-      <HeaderRight>
+      <HeaderRight
+        animate={openMenu ? "open" : "closed"}
+        variants={menuHeight}
+      >
         <NavLinks openMenu={openMenu} />
         <MenuButton onClick={() => menuFunc()}>
           <MenuButtonBar $openMenu={openMenu} />
           <MenuButtonBar $openMenu={openMenu} />
           <MenuButtonBar $openMenu={openMenu} />
-          <MenuButtonText>
+          <MenuButtonText $openMenu={openMenu}>
             {
               openMenu ? "Close" : "Menu"
             }
@@ -39,7 +58,7 @@ const StyledHeader = styled.header`
   height: 100px;
 `;
 
-const HeaderRight = styled.div`
+const HeaderRight = styled(motion.div)`
 
   ${media.sm`
     display: block;
@@ -74,7 +93,10 @@ const MenuButtonBar = styled.span<{ $openMenu: boolean }>`
   height: 1px;
   display: block;
   transform-origin: 50% 50%;
-  transition: 0.3s ease-in-out;
+  transition:
+    top 0.3s ease-in-out,
+    transform 0.3s ease-in-out,
+    background-color 1s ease-in-out;
 
   &:nth-child(1) {
     position: relative;
@@ -99,7 +121,12 @@ const MenuButtonBar = styled.span<{ $openMenu: boolean }>`
   }
 `;
 
-const MenuButtonText = styled.p`
+// const MenuButtonText = styled.p`
+const MenuButtonText = styled.p<{ $openMenu: boolean }>`
+  ${({ $openMenu }) => $openMenu ? `
+  color: #1A1A1A;
+  ` : `color: #FFFFFF;`}
+  transition: color 1s ease-in-out;
   margin-top: 12px;
   font-size: 14px;
 `;
