@@ -14,13 +14,16 @@ const links = [
 ];
 
 export default function NavLinks({
-  openMenu
+  openMenu,
+  onClick
 }: {
   openMenu: boolean
+  onClick: () => void
 }) {
   const pathname = usePathname();
   const xs = useXsMediaQuery();
   const sm = useSmMediaQuery();
+
   // ToDo 2200pxだと縦幅が大きい時やばそう
   let openClipPath = "circle(2200px at calc(100% - 40px) 31px)";
   let closedClipPath = "circle(0px at calc(100% - 40px) 31px)";
@@ -61,13 +64,19 @@ export default function NavLinks({
       {
         links.map((link) => {
           return (
-            <NavLink
+            <Link
               key={link.name}
               href={link.href}
-              isActive={pathname === link.href}
+              passHref
+              legacyBehavior
             >
-              {link.name}
-            </NavLink>
+              <NavLink
+                $isActive={pathname === link.href}
+                onClick={onClick}
+              >
+                {link.name}
+              </NavLink>
+            </Link>
           );
         })
       }
@@ -92,16 +101,7 @@ const StyledNavLinks = styled(motion.nav)`
   `}
 `;
 
-const NavLink = styled(
-  (
-    { href, isActive, children, ...props }:
-    { href: string, isActive: boolean, children: string, }
-  ) => (
-    <Link href={href} {...props} scroll={false} >
-      {children}
-    </Link>
-  )
-)`
+const NavLink = styled.a<{ $isActive: boolean }>`
   color: #1A1A1A;
   position: relative;
   padding: 20px;
@@ -136,7 +136,7 @@ const NavLink = styled(
     width: 110%;
   }
 
-  ${({ isActive }) => isActive && `
+  ${({ $isActive }) => $isActive && `
     &:before {
       transform: scale(1, 1);
     }

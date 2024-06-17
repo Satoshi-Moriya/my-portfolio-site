@@ -32,7 +32,10 @@ export default function Header() {
         animate={openMenu ? "open" : "closed"}
         variants={menuHeight}
       >
-        <NavLinks openMenu={openMenu} />
+        <NavLinks
+          openMenu={openMenu}
+          onClick={menuFunc}
+        />
         <MenuButton onClick={() => menuFunc()}>
           <MenuButtonBar $openMenu={openMenu} />
           <MenuButtonBar $openMenu={openMenu} />
@@ -121,11 +124,10 @@ const MenuButtonBar = styled.span<{ $openMenu: boolean }>`
   }
 `;
 
-// const MenuButtonText = styled.p`
 const MenuButtonText = styled.p<{ $openMenu: boolean }>`
-  ${({ $openMenu }) => $openMenu ? `
-  color: #1A1A1A;
-  ` : `color: #FFFFFF;`}
+  ${({ $openMenu }) => $openMenu ?
+    `color: #1A1A1A;` : `color: #FFFFFF;`
+  }
   transition: color 1s ease-in-out;
   margin-top: 12px;
   font-size: 14px;
