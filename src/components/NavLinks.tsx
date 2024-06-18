@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { poppinsFont } from "@/styles/fonts";
+import { media } from "@/utils/media";
+import { useSmMediaQuery, useXsMediaQuery } from "@/hooks/useMediaQuery";
 
 const links = [
   { name: "Top", href: "/", },
@@ -10,21 +13,70 @@ const links = [
   { name: "Works", href: "/works", },
 ];
 
-export default function NavLinks() {
+export default function NavLinks({
+  openMenu,
+  onClick
+}: {
+  openMenu: boolean
+  onClick: () => void
+}) {
   const pathname = usePathname();
+  const xs = useXsMediaQuery();
+  const sm = useSmMediaQuery();
+
+  // ToDo 2200pxだと縦幅が大きい時やばそう
+  let openClipPath = "circle(2200px at calc(100% - 40px) 31px)";
+  let closedClipPath = "circle(0px at calc(100% - 40px) 31px)";
+
+  if (xs) {
+    openClipPath = "circle(2200px at calc(100% - 59px) 31px)";
+    closedClipPath = "circle(0px at calc(100% - 59px) 31px)";
+  }
+  if (sm) {
+    openClipPath = "none";
+    closedClipPath = "none";
+  }
+
+  const menu = {
+    open: {
+      clipPath: openClipPath,
+      transition: {
+        type: "spring",
+        stiffness: 20,
+        restDelta: 2
+      },
+    },
+    closed: {
+      clipPath: closedClipPath,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40
+      },
+    }
+  };
 
   return(
-    <StyledNavLinks>
+    <StyledNavLinks
+      animate={openMenu ? "open" : "closed"}
+      variants={menu}
+    >
       {
         links.map((link) => {
           return (
-            <NavLink
+            <Link
               key={link.name}
               href={link.href}
-              isActive={pathname === link.href}
+              passHref
+              legacyBehavior
             >
-              {link.name}
-            </NavLink>
+              <NavLink
+                $isActive={pathname === link.href}
+                onClick={onClick}
+              >
+                {link.name}
+              </NavLink>
+            </Link>
           );
         })
       }
@@ -32,25 +84,42 @@ export default function NavLinks() {
   );
 }
 
-const StyledNavLinks = styled.nav`
+const StyledNavLinks = styled(motion.nav)`
   display: flex;
-`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  height: 100%;
 
-const NavLink = styled(
-  (
-    { href, isActive, children, ...props }:
-    { href: string, isActive: boolean, children: string, }
-  ) => (
-    <Link href={href} {...props} scroll={false} >
-      {children}
-    </Link>
-  )
-)`
-  color: #FFFFFF;
-  text-shadow: 0 1px 3px #1A1A1A;
+  ${media.sm`
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: transparent;
+    height: auto;
+  `}
+`;
+
+const NavLink = styled.a<{ $isActive: boolean }>`
+  color: #1A1A1A;
   position: relative;
-  padding: 10px 20px;
-  font-family: ${poppinsFont.style.fontFamily}, sans-serif;
+  padding: 20px;
+
+  &:hover {
+    color: #1A1A1A;
+  }
+
+  ${media.sm`
+    padding: 10px 20px;
+    color: #FFFFFF;
+    text-shadow: 0 1px 3px #1A1A1A;
+    font-family: ${poppinsFont.style.fontFamily}, sans-serif;
+
+    &:hover {
+      color: #FFFFFF;
+    }
+  `}
 
   &:before {
     background-color: #FFFFFF;
@@ -67,8 +136,7 @@ const NavLink = styled(
     width: 110%;
   }
 
-  ${({ isActive }) => isActive && `
-
+  ${({ $isActive }) => $isActive && `
     &:before {
       transform: scale(1, 1);
     }

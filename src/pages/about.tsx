@@ -11,6 +11,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
 import Image from "next/image";
+import { media } from "@/utils/media";
 
 
 export default function About() {
@@ -84,27 +85,46 @@ export default function About() {
 
 const Inner = styled.div`
   height: 100%;
-  width: 960px;
+  width: 1040px;
   max-width: 100%;
   margin: 0 auto;
+  padding: 0 24px;
+
+  ${media.xs`
+    padding: 0 40px;
+  `}
 `;
 
 const AboutContents = styled(motion.div)`
   margin-top: 140px; // headerの高さ100pxと余白40px
-  padding: 0 50px;
+  padding-bottom: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(1, 1fr);
   grid-template-rows: auto auto;
   gap: 40px;
+
+  ${media.sm`
+    grid-template-columns: 1fr 1fr;
+  `}
 `;
 
 const AboutImageWrapper = styled.figure`
   grid-column: 1 / 2;
+  grid-row: 1;
+
+  ${media.sm`
+    grid-row: auto;
+  `}
 `;
 
 const AboutTextWrapper = styled.div`
-  grid-column: 2 / 3;
+  grid-row: 2;
   line-height: 1.8;
+
+  ${media.sm`
+    grid-row: auto;
+    grid-column: 2 / 3;
+  `}
 `;
 
 const AboutTitle = styled.div`
@@ -136,11 +156,22 @@ const AboutDescription = styled.div`
 `;
 
 const AboutExternalLinks = styled.div`
-  grid-column: 1 / 3;
+  grid-row: 3;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 30px 20px;
+  justify-content: center;
   font-size: 20px;
+
+  ${media.xs`
+    grid-template-columns: 1fr 1fr;
+  `}
+
+  ${media.sm`
+    grid-row: auto;
+    grid-column: 1 / 3;
+    grid-template-columns: 1fr 1fr 1fr;
+  `}
 `;
 
 const AboutExternalLink = styled.a`

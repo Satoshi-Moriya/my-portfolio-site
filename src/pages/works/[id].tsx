@@ -5,6 +5,7 @@ import { Work } from "../works";
 import { poppinsFont } from "../../styles/fonts";
 import { client } from "@/libs/client";
 import { usePageTransition } from "@/components/PageTransitionContext";
+import { media } from "@/utils/media";
 
 
 export async function getStaticPaths() {
@@ -112,39 +113,62 @@ export default function Work({
 const Title = styled.h2`
   font-family: ${poppinsFont.style.fontFamily}, sans-serif;
   letter-spacing: 0.02px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
   white-space: nowrap;
   line-height: 1;
   position: fixed;
-  // 25pxは検証ツールでメニューと比較していい感じの場所になった時の数値
-  top: 25px;
-  left: 50px;
+  top: 20px;
+  left: 5%;
+
+  ${media.sm`
+    font-size: 30px;
+    // 25pxは検証ツールでメニューと比較していい感じの場所になった時の数値
+    top: 25px;
+    left: 50px;
+  `}
 `;
 
 const BigText = styled.span`
-  font-size: 50px;
+  font-size: 35px;
+
+  ${media.sm`
+    font-size: 50px;
+  `}
 `;
 
 const BigPinkText = styled.span`
-  font-size: 50px;
+  font-size: 35px;
   color: #F4B9C5;
+
+  ${media.sm`
+    font-size: 50px;
+  `}
 `;
 
 const MvWrap = styled(motion.figure)`
-  background-color: #000000;
-  height: 100vh;
-  width: 100%;
-  position: fixed;
+  position: relative;
+  top: 200px;
   z-index: -1;
+
+  ${media.sm`
+    top: auto;
+    position: fixed;
+    display: block;
+    background-color: #000000;
+    height: 100vh;
+    width: 100%;
+  `}
 `;
 
-// const Mv = styled(motion.img)`
 const Mv = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
-  opacity: 0.5;
+
+  ${media.sm`
+    opacity: 0.5;
+  `}
 `;
 
 const WorkContents = styled(motion.main)`
@@ -152,15 +176,32 @@ const WorkContents = styled(motion.main)`
   display: flex;
   justify-content: center;
   padding-bottom: 100px;
+  margin-top: 200px;
+
+  ${media.sm`
+    margin-top: 0;
+  `}
 `;
 
 const WorkDetails = styled.div`
-  margin-top: 100px;
-  width: 60%;
+  width: 90%;
+  max-width: 600px;
+
+  ${media.sm`
+    margin-top: 100px;
+    width: 60%;
+  `}
 `;
 
 const WorkDetailsHeader = styled.div`
-  height: calc(100vh - 100px);
+  // ToDo #_nextが基準、影響範囲が広いので修正した方が良いかも
+  position: absolute;
+  top: 125px;
+
+  ${media.sm`
+    position: static;
+    height: calc(100vh - 100px);
+  `}
 `;
 
 const WorkDetailsHeaderTitle = styled(motion.h1)`

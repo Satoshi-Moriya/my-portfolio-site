@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel, Pagination } from "swiper/modules";
+import { Mousewheel, Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 import { Work } from "@/pages/works";
 import Link from "next/link";
@@ -19,7 +19,8 @@ export default function ImageSlider({
         top: "50%",
         left: "50%",
         transform: "translate(-50%,-50%)",
-        position: "relative"
+        position: "relative",
+        height: "100%",
       }}
     >
       <motion.div
@@ -36,7 +37,8 @@ export default function ImageSlider({
           }
         }}
         style={{
-          position: "relative"
+          position: "relative",
+          height: "100%",
         }}
       >
         <StyledSwiper
@@ -52,19 +54,21 @@ export default function ImageSlider({
               eventsTarget: '#__next'
             }
           }
+          navigation
           pagination={{
+            clickable: true,
             type: "fraction"
           }}
-          modules={[Mousewheel, Pagination]}
+          modules={[Mousewheel, Pagination, Navigation]}
         >
           {
             works.map(({ id, title, mv }) => (
               <StyledSwiperSlide key={id}>
-                <Link href={`/works/${id}`} scroll={false}>
+                <StyledSwiperSlideLink href={`/works/${id}`} scroll={false}>
                   <ThumbnailWrap layoutId={`mv_${id}`}>
                     <Thumbnail src={mv?.url} alt={title} />
                   </ThumbnailWrap>
-                </Link>
+                </StyledSwiperSlideLink>
               </StyledSwiperSlide>
             ))
           }
@@ -75,9 +79,41 @@ export default function ImageSlider({
 }
 
 const StyledSwiper = styled(Swiper)`
+  height: 100%;
 
   .swiper-pagination {
     text-align: center;
+    position: relative;
+    top: -94px; // 要素の高さ24px + swiper-buttonの高さ30px + 40pxの余白
+    z-index: 1;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: relative;
+    top: -94px;
+    width: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .swiper-button-prev {
+    transform: translateX(-200%);
+
+    &::before {
+      content: "prev";
+      position: absolute;
+    }
+  }
+
+  .swiper-button-next {
+    transform: translateX(100%);
+
+    &::before {
+      content: "next";
+      position: absolute;
+    }
   }
 `;
 
@@ -90,6 +126,13 @@ const StyledSwiperSlide = styled(SwiperSlide)`
   align-items: center;
   justify-content: center;
   transform-origin: 0;
+  top: 50%;
+  // ToDo importantをなくしたい
+  transform: translateY(-50%) !important;
+`;
+
+const StyledSwiperSlideLink = styled(Link)`
+
 `;
 
 const ThumbnailWrap = styled(motion.figure)`
