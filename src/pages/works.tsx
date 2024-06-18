@@ -41,10 +41,6 @@ export default function Works({
     work.mv ? work.mv.url : "/no-img.png"
   ));
 
-  useEffect(() => {
-    setTransitionFrom("works");
-  }, []);
-
   return (
     <>
       {transitionFrom === "work" && (
