@@ -40,7 +40,7 @@ export default function About() {
             <p>Web Engineer / Drummer</p>
           </AboutTitle>
           <AboutDescription>
-            <p>山梨県出身、29歳。</p>
+            <p>山梨県出身、30歳。</p>
             <p>都内の受託系の開発会社でWebエンジニアをやっております。</p>
             <p>個人でWebサイト制作のお仕事もおこなっております。</p>
             <p>ドラムが好き。ドラマーとしても活動中。</p>

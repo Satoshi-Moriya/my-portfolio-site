@@ -35,7 +35,6 @@ export default function Works({
   works: Work[];
 }) {
   const { transitionFrom, setTransitionFrom } = usePageTransition();
-  console.log(transitionFrom)
 
   const imageSrc = works.map((work, index) => (
     // ToDo no-imgを用意する？
