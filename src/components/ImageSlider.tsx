@@ -32,7 +32,7 @@ export default function ImageSlider({
           opacity: 1,
           transform: "translate(0, 0)",
           transition: {
-            delay: 1.2,
+            delay: 0.5,
             easing: "cubic-bezier(0.22, 1, 0.36, 1)"
           }
         }}
