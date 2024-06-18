@@ -69,6 +69,7 @@ export default function NavLinks({
               href={link.href}
               passHref
               legacyBehavior
+              scroll={false}
             >
               <NavLink
                 $isActive={pathname === link.href}
