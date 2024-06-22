@@ -15,75 +15,100 @@ import { media } from "@/utils/media";
 
 
 export default function About() {
-  const { setTransitionFrom } = usePageTransition();
+  const { transitionFrom, setTransitionFrom } = usePageTransition();
 
-  useEffect(() => {
+  const handleAnimationComplete = () => {
     setTransitionFrom("about");
-  }, []);
+  };
 
   return (
-    <Inner>
-      <LogoTitle />
-      <AboutContents
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition:{ duration: 0.2, delay: 0.5}
-        }}
-        exit={{
-          opacity: 0,
-          transition:{ duration: 0.2 }
-        }}
-      >
-        <AboutImageWrapper>
-          <Image src="/images/about.png" alt="森屋 敏" width={960} height={640} />
-        </AboutImageWrapper>
-        <AboutTextWrapper>
-          <AboutTitle>
-            <h2>森屋 敏</h2>
-            <p>Web Engineer / Drummer</p>
-          </AboutTitle>
-          <AboutDescription>
-            <p>山梨県出身、30歳。</p>
-            <p>都内の受託系の開発会社でWebエンジニアをやっております。</p>
-            <p>個人でWebサイト制作のお仕事もおこなっております。</p>
-            <p>ドラムが好き。ドラマーとしても活動中。</p>
-            <br />
-            <p>お仕事のご依頼・ご相談などはメールや各SNSのDMからお気軽にお問い合わせください。</p>
-          </AboutDescription>
-        </AboutTextWrapper>
-        <AboutExternalLinks>
-          <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
-            <MdOutlineEmail />
-            <span>Email</span>
-          </AboutExternalLink>
-          <AboutExternalLink href="https://twitter.com/_moriyas" target="_blank" rel="noopener noreferrer">
-            <FaXTwitter />
-            <span>X（旧Twitter）</span>
-          </AboutExternalLink>
-          <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
-            <FaInstagram />
-            <span>Instagram</span>
-          </AboutExternalLink>
-          <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
-            <FaGithub />
-            <span>GitHub</span>
-          </AboutExternalLink>
-          <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
-            <FaPencilAlt />
-            <span>Blog</span>
-          </AboutExternalLink>
-          <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
-            <FaYoutube />
-            <span>YouTube</span>
-          </AboutExternalLink>
-          <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
-            <MdComputer />
-            <span>CrowdWorks</span>
-          </AboutExternalLink>
-        </AboutExternalLinks>
-      </AboutContents>
-    </Inner>
+    <>
+      {transitionFrom === "work" && (
+        <motion.div
+          initial={{
+            right: '0%',
+          }}
+          animate={{
+            right: '-100%',
+            transition: {
+              duration: 1,
+              ease: [0.8, 0, 0.5, 1]
+            },
+          }}
+          onAnimationComplete={handleAnimationComplete}
+          style={{
+            position: "fixed",
+            zIndex: "101",
+            backgroundColor: "#000000",
+            height: "100%",
+            width: "100%",
+            top: 0,
+          }}
+        />
+      )}
+      <Inner>
+        <LogoTitle />
+        <AboutContents
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition:{ duration: 0.2, delay: 0.5}
+          }}
+          exit={{
+            opacity: 0,
+            transition:{ duration: 0.2 }
+          }}
+        >
+          <AboutImageWrapper>
+            <Image src="/images/about.png" alt="森屋 敏" width={960} height={640} />
+          </AboutImageWrapper>
+          <AboutTextWrapper>
+            <AboutTitle>
+              <h2>森屋 敏</h2>
+              <p>Web Engineer / Drummer</p>
+            </AboutTitle>
+            <AboutDescription>
+              <p>山梨県出身、30歳。</p>
+              <p>都内の受託系の開発会社でWebエンジニアをやっております。</p>
+              <p>個人でWebサイト制作のお仕事もおこなっております。</p>
+              <p>ドラムが好き。ドラマーとしても活動中。</p>
+              <br />
+              <p>お仕事のご依頼・ご相談などはメールや各SNSのDMからお気軽にお問い合わせください。</p>
+            </AboutDescription>
+          </AboutTextWrapper>
+          <AboutExternalLinks>
+            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+              <MdOutlineEmail />
+              <span>Email</span>
+            </AboutExternalLink>
+            <AboutExternalLink href="https://twitter.com/_moriyas" target="_blank" rel="noopener noreferrer">
+              <FaXTwitter />
+              <span>X（旧Twitter）</span>
+            </AboutExternalLink>
+            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+              <span>Instagram</span>
+            </AboutExternalLink>
+            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+              <FaGithub />
+              <span>GitHub</span>
+            </AboutExternalLink>
+            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+              <FaPencilAlt />
+              <span>Blog</span>
+            </AboutExternalLink>
+            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+              <FaYoutube />
+              <span>YouTube</span>
+            </AboutExternalLink>
+            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+              <MdComputer />
+              <span>CrowdWorks</span>
+            </AboutExternalLink>
+          </AboutExternalLinks>
+        </AboutContents>
+      </Inner>
+    </>
   )
 }
 

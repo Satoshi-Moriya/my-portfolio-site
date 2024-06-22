@@ -4,7 +4,6 @@ import LogoTitle from "@/components/LogoTitle";
 import ImageSlider from "@/components/ImageSlider";
 import { motion } from "framer-motion";
 import { usePageTransition } from "@/components/PageTransitionContext";
-import { useEffect } from "react";
 
 
 export type Work = {
@@ -36,6 +35,10 @@ export default function Works({
 }) {
   const { transitionFrom, setTransitionFrom } = usePageTransition();
 
+  const handleAnimationComplete = () => {
+    setTransitionFrom("works");
+  };
+
   const imageSrc = works.map((work, index) => (
     // ToDo no-imgを用意する？
     work.mv ? work.mv.url : "/no-img.png"
@@ -55,6 +58,7 @@ export default function Works({
               ease: [0.8, 0, 0.5, 1]
             },
           }}
+          onAnimationComplete={handleAnimationComplete}
           style={{
             position: "fixed",
             zIndex: "101",
