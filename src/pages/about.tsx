@@ -1,7 +1,5 @@
 import LogoTitle from "@/components/LogoTitle"
-import { usePageTransition } from "@/components/PageTransitionContext";
 import { motion } from "framer-motion";
-import React, { useEffect } from "react"
 import styled from "styled-components";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaXTwitter } from "react-icons/fa6";
@@ -12,40 +10,14 @@ import { FaYoutube } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
 import Image from "next/image";
 import { media } from "@/utils/media";
+import TransitionAnimeStart from "@/components/TransitionAnimeStart";
 
 
 export default function About() {
-  const { transitionFrom, setTransitionFrom } = usePageTransition();
-
-  const handleAnimationComplete = () => {
-    setTransitionFrom("about");
-  };
 
   return (
     <>
-      {transitionFrom === "work" && (
-        <motion.div
-          initial={{
-            right: '0%',
-          }}
-          animate={{
-            right: '-100%',
-            transition: {
-              duration: 1,
-              ease: [0.8, 0, 0.5, 1]
-            },
-          }}
-          onAnimationComplete={handleAnimationComplete}
-          style={{
-            position: "fixed",
-            zIndex: "101",
-            backgroundColor: "#000000",
-            height: "100%",
-            width: "100%",
-            top: 0,
-          }}
-        />
-      )}
+      <TransitionAnimeStart prevPageName="about" />
       <Inner>
         <LogoTitle />
         <AboutContents

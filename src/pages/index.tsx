@@ -4,6 +4,8 @@ import FixedBg from "@/components/FixedBg";
 import { motion } from "framer-motion";
 import { usePageTransition } from "@/components/PageTransitionContext";
 import Loading from "@/components/Loading";
+import TransitionAnimeStart from "@/components/TransitionAnimeStart";
+
 
 export async function getStaticProps() {
   return {
@@ -14,40 +16,14 @@ export async function getStaticProps() {
 }
 
 export default function Top() {
-  const { transitionFrom, setTransitionFrom } = usePageTransition();
-
-  const handleAnimationComplete = () => {
-    setTransitionFrom("top");
-  };
+  const { transitionFrom } = usePageTransition();
 
   return (
     <>
       {transitionFrom === "first load" && (
         <Loading />
       )}
-      {transitionFrom === "work" && (
-        <motion.div
-          initial={{
-            right: '0%',
-          }}
-          animate={{
-            right: '-100%',
-            transition: {
-              duration: 1,
-              ease: [0.8, 0, 0.5, 1]
-            },
-          }}
-          onAnimationComplete={handleAnimationComplete}
-          style={{
-            position: "fixed",
-            zIndex: "101",
-            backgroundColor: "#000000",
-            height: "100%",
-            width: "100%",
-            top: 0,
-          }}
-        />
-      )}
+      <TransitionAnimeStart prevPageName="top" />
       <FixedBg>
         <TitleWrap>
           <Title layoutId="logoTitle">
