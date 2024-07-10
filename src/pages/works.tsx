@@ -2,7 +2,6 @@ import { MicroCMSContentId, MicroCMSDate, MicroCMSImage } from "microcms-js-sdk"
 import { client } from "@/libs/client";
 import LogoTitle from "@/components/LogoTitle";
 import ImageSlider from "@/components/ImageSlider";
-import TransitionAnimeStart from "@/components/TransitionAnimeStart";
 
 
 export type Work = {
@@ -40,7 +39,6 @@ export default function Works({
 
   return (
     <>
-      <TransitionAnimeStart prevPageName="works" />
       <LogoTitle />
       <ImageSlider works={works} />
     </>
