@@ -29,63 +29,44 @@ export default function ImageSlider({
         height: "100%",
       }}
     >
-      <motion.div
-        initial={{
-          opacity: 0,
-          transform: "translate(0, 50%)",
-        }}
-        animate={{
-          opacity: 1,
-          transform: "translate(0, 0)",
-          transition: {
-            delay: 0.5,
-            easing: "cubic-bezier(0.22, 1, 0.36, 1)"
-          }
-        }}
-        style={{
-          position: "relative",
-          height: "100%",
-        }}
-      >
-        <StyledSwiper
-          spaceBetween={200}
-          slidesPerView={1.2}
-          initialSlide={swiperNowWork}
-          loop={true}
-          centeredSlides={true}
-          mousewheel={
-            {
-              invert: true,
-              eventsTarget: '#__next'
-            }
-          }
-          navigation
-          pagination={{
-            clickable: true,
-            type: "fraction"
-          }}
-          modules={[Mousewheel, Pagination, Navigation]}
-        >
+      <StyledSwiper
+        spaceBetween={200}
+        slidesPerView={1.2}
+        initialSlide={swiperNowWork}
+        loop={true}
+        centeredSlides={true}
+        mousewheel={
           {
-            works.map(({ id, title, mv }, index) => (
-              <StyledSwiperSlide key={id}>
-                <StyledSwiperSlideLink
-                  href={`/works/${id}`}
-                  passHref
-                  legacyBehavior
-                  scroll={false}
-                >
-                  <a href={`/works/${id}`} onClick={() => handleActiveWorkNum(index)}>
-                    <ThumbnailWrap layoutId={`mv_${id}`}>
-                      <Thumbnail src={mv?.url} alt={title} />
-                    </ThumbnailWrap>
-                  </a>
-                </StyledSwiperSlideLink>
-              </StyledSwiperSlide>
-            ))
+            invert: true,
+            eventsTarget: '#__next'
           }
-        </StyledSwiper>
-      </motion.div>
+        }
+        navigation
+        pagination={{
+          clickable: true,
+          type: "fraction"
+        }}
+        modules={[Mousewheel, Pagination, Navigation]}
+      >
+        {
+          works.map(({ id, title, mv }, index) => (
+            <StyledSwiperSlide key={id}>
+              <StyledSwiperSlideLink
+                href={`/works/${id}`}
+                passHref
+                legacyBehavior
+                scroll={false}
+              >
+                <a href={`/works/${id}`} onClick={() => handleActiveWorkNum(index)}>
+                  <ThumbnailWrap layoutId={`mv_${id}`}>
+                    <Thumbnail src={mv?.url} alt={title} />
+                  </ThumbnailWrap>
+                </a>
+              </StyledSwiperSlideLink>
+            </StyledSwiperSlide>
+          ))
+        }
+      </StyledSwiper>
     </div>
   )
 }
