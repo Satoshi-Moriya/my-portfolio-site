@@ -4,7 +4,6 @@ import FixedBg from "@/components/FixedBg";
 import { motion } from "framer-motion";
 import { usePageTransition } from "@/components/PageTransitionContext";
 import Loading from "@/components/Loading";
-import TransitionAnimeStart from "@/components/TransitionAnimeStart";
 
 
 export async function getStaticProps() {
@@ -23,7 +22,6 @@ export default function Top() {
       {transitionFrom === "first load" && (
         <Loading />
       )}
-      <TransitionAnimeStart prevPageName="top" />
       <FixedBg>
         <TitleWrap>
           <Title layoutId="logoTitle">
