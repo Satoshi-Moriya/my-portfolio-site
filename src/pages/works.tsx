@@ -2,8 +2,6 @@ import { MicroCMSContentId, MicroCMSDate, MicroCMSImage } from "microcms-js-sdk"
 import { client } from "@/libs/client";
 import LogoTitle from "@/components/LogoTitle";
 import ImageSlider from "@/components/ImageSlider";
-import { useEffect } from "react";
-import { usePageTransition } from "@/components/PageTransitionContext";
 
 
 export type Work = {
@@ -33,12 +31,6 @@ export default function Works({
 }: {
   works: Work[];
 }) {
-  const { setTransitionFrom } = usePageTransition();
-
-  useEffect(() => {
-    setTransitionFrom("works");
-  }, []);
-
   const imageSrc = works.map((work, index) => (
     // ToDo no-imgを用意する？
     work.mv ? work.mv.url : "/no-img.png"

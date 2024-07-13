@@ -13,11 +13,38 @@ export default function ImageSlider({
 }: {
   works: Work[];
 }) {
-  const { swiperNowWork, setSwiperNowWork } = usePageTransition();
+  const { transitionFrom, setTransitionFrom, swiperNowWork, setSwiperNowWork } = usePageTransition();
 
   const handleActiveWorkNum = (num: number) => {
     setSwiperNowWork(num);
   };
+
+  const handleAnimationComplete = () => {
+    // worksページworkページからor他のページからの遷移でアニメーションが違うため
+    // アニメーション後にtransitionFromを設定する必要がある
+    setTransitionFrom("works");
+  };
+
+  // ToDo useStateの方が良いかも？or別のやり方
+  let initial;
+  let animate;
+  if (transitionFrom !== "work") {
+    initial = {
+      opacity: 0,
+      transform: "translate(0, 50%)",
+    };
+    animate = {
+      opacity: 1,
+      transform: "translate(0, 0)",
+      transition: {
+        delay: 0.5,
+        easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+      }
+    };
+  } else {
+    initial = "";
+    animate = "";
+  }
 
   return (
     <div style={{
@@ -29,44 +56,54 @@ export default function ImageSlider({
         height: "100%",
       }}
     >
-      <StyledSwiper
-        spaceBetween={200}
-        slidesPerView={1.2}
-        initialSlide={swiperNowWork}
-        loop={true}
-        centeredSlides={true}
-        mousewheel={
-          {
-            invert: true,
-            eventsTarget: '#__next'
-          }
-        }
-        navigation
-        pagination={{
-          clickable: true,
-          type: "fraction"
+      <motion.div
+        initial={initial}
+        animate={animate}
+        style={{
+          position: "relative",
+          height: "100%",
         }}
-        modules={[Mousewheel, Pagination, Navigation]}
+        onAnimationComplete={handleAnimationComplete}
       >
-        {
-          works.map(({ id, title, mv }, index) => (
-            <StyledSwiperSlide key={id}>
-              <StyledSwiperSlideLink
-                href={`/works/${id}`}
-                passHref
-                legacyBehavior
-                scroll={false}
-              >
-                <a href={`/works/${id}`} onClick={() => handleActiveWorkNum(index)}>
-                  <ThumbnailWrap layoutId={`mv_${id}`}>
-                    <Thumbnail src={mv?.url} alt={title} />
-                  </ThumbnailWrap>
-                </a>
-              </StyledSwiperSlideLink>
-            </StyledSwiperSlide>
-          ))
-        }
-      </StyledSwiper>
+        <StyledSwiper
+          spaceBetween={200}
+          slidesPerView={1.2}
+          initialSlide={swiperNowWork}
+          loop={true}
+          centeredSlides={true}
+          mousewheel={
+            {
+              invert: true,
+              eventsTarget: '#__next'
+            }
+          }
+          navigation
+          pagination={{
+            clickable: true,
+            type: "fraction"
+          }}
+          modules={[Mousewheel, Pagination, Navigation]}
+        >
+          {
+            works.map(({ id, title, mv }, index) => (
+              <StyledSwiperSlide key={id}>
+                <StyledSwiperSlideLink
+                  href={`/works/${id}`}
+                  passHref
+                  legacyBehavior
+                  scroll={false}
+                >
+                  <a href={`/works/${id}`} onClick={() => handleActiveWorkNum(index)}>
+                    <ThumbnailWrap layoutId={`mv_${id}`}>
+                      <Thumbnail src={mv?.url} alt={title} />
+                    </ThumbnailWrap>
+                  </a>
+                </StyledSwiperSlideLink>
+              </StyledSwiperSlide>
+            ))
+          }
+        </StyledSwiper>
+      </ motion.div>
     </div>
   )
 }
