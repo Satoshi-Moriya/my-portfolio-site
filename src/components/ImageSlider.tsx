@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Work } from "@/pages/works";
 import Link from "next/link";
 import { usePageTransition } from "./PageTransitionContext";
+import { useRouter } from "next/router";
 
 
 export default function ImageSlider({
@@ -14,6 +15,7 @@ export default function ImageSlider({
   works: Work[];
 }) {
   const { transitionFrom, setTransitionFrom, swiperNowWork, setSwiperNowWork } = usePageTransition();
+  const router = useRouter();
 
   const handleActiveWorkNum = (num: number) => {
     setSwiperNowWork(num);
@@ -46,6 +48,18 @@ export default function ImageSlider({
     animate = "";
   }
 
+  // ToDo initialとanimateもこっちの処理で対応可能かも？
+  const getAnimation = (route: string) => {
+    if (route !== "/works/[id]") {
+      return {
+        opacity: 0,
+        transition:{ duration: 0.2 }
+      };
+    } else {
+      return ""
+    }
+  };
+
   return (
     <div style={{
         overflow: "hidden",
@@ -59,6 +73,7 @@ export default function ImageSlider({
       <motion.div
         initial={initial}
         animate={animate}
+        exit={getAnimation(router.route)}
         style={{
           position: "relative",
           height: "100%",
