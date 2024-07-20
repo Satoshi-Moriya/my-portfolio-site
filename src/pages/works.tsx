@@ -31,7 +31,6 @@ export default function Works({
 }: {
   works: Work[];
 }) {
-
   const imageSrc = works.map((work, index) => (
     // ToDo no-imgを用意する？
     work.mv ? work.mv.url : "/no-img.png"

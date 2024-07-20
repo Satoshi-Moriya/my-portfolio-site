@@ -10,14 +10,19 @@ import { FaYoutube } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
 import Image from "next/image";
 import { media } from "@/utils/media";
-import TransitionAnimeStart from "@/components/TransitionAnimeStart";
+import { usePageTransition } from "@/components/PageTransitionContext";
+import { useEffect } from "react";
 
 
 export default function About() {
+  const { setTransitionFrom } = usePageTransition();
+
+  useEffect(() => {
+    setTransitionFrom("about");
+  }, []);
 
   return (
     <>
-      <TransitionAnimeStart prevPageName="about" />
       <Inner>
         <LogoTitle />
         <AboutContents

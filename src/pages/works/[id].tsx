@@ -7,6 +7,7 @@ import { client } from "@/libs/client";
 import { usePageTransition } from "@/components/PageTransitionContext";
 import { media } from "@/utils/media";
 import LogoTitle from "@/components/LogoTitle";
+import { useRouter } from "next/router";
 
 
 export async function getStaticPaths() {
@@ -35,77 +36,76 @@ export default function Work({
   work: Work;
 }) {
   const { setTransitionFrom } = usePageTransition();
+  const router = useRouter();
 
   useEffect(() => {
     setTransitionFrom("work");
   }, []);
 
+  // ToDo initialとanimateもこっちの処理で対応可能かも？
+  const getExitAnimation = (route: string) => {
+    if (route !== "/works") {
+      return {
+        opacity: 0,
+        transition:{ duration: 0.2 }
+      };
+    } else {
+      return ""
+    }
+  };
+
   return (
     <>
-      {/* <motion.div
-        initial={{
-          right: '100%',
-        }}
-        exit={{
-          right: '0%',
-          transition: {
-            duration: 1,
-            ease: [0.8, 0, 0.5, 1]
-          },
-        }}
-        style={{
-          position: "fixed",
-          zIndex: "101",
-          backgroundColor: "#000000",
-          height: "100%",
-          width: "100%",
-        }}
-      /> */}
       <LogoTitle />
-      <MvWrap
-        layoutId={`mv_${work.id}`}
-        transition={{ duration: 0.5 }}
+      <motion.div
+        exit={getExitAnimation(router.route)}
       >
-        <Mv
-          src={work.mv?.url}
-          alt={work.title}
-        />
-      </MvWrap>
-      <WorkContents
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition:{ duration: 0.2, delay: 0.5}
-        }}
-        exit={{
-          opacity: 0,
-          transition: { duration: 0.5}
-        }}
-      >
-        <WorkDetails>
-          <WorkDetailsHeader>
-            <WorkDetailsHeaderTitle>{work.enTitle}</WorkDetailsHeaderTitle>
-          </WorkDetailsHeader>
-          <WorkDetailsBody>
-            <WorkDetailsBodyTitle>
-              <WorkDetailsBodyTitleMain>{work.title}</WorkDetailsBodyTitleMain>
-              <WorkDetailsBodyTitleSub>{work.type}</WorkDetailsBodyTitleSub>
-            </WorkDetailsBodyTitle>
-            <WorkDetailsDesc>{work.explanation}</WorkDetailsDesc>
-            <WorkDetailsData>
-              <WorkDetailsDataItem><dt>Release</dt><dd>{work.release}</dd></WorkDetailsDataItem>
-              <WorkDetailsDataItem><dt>Role</dt><dd>{work.role}</dd></WorkDetailsDataItem>
-              <WorkDetailsDataItem><dt>Url</dt><dd><a href={work.url} target="_blank" rel="noopener noreferrer">{work.url}</a></dd></WorkDetailsDataItem>
-            </WorkDetailsData>
-          </WorkDetailsBody>
-          <WorkDetailsImageWrap>
-            <img src={work.wholeImg?.url} alt="" />
-          </WorkDetailsImageWrap>
-          <WorkDetailsExtLinkWrap>
-            <a href={work.url} target="_blank" rel="noopener noreferrer">View Site</a>
-          </WorkDetailsExtLinkWrap>
-        </WorkDetails>
-      </WorkContents>
+
+        <MvWrap
+          layoutId={`mv_${work.id}`}
+          transition={{ duration: 0.5 }}
+        >
+          <Mv
+            src={work.mv?.url}
+            alt={work.title}
+          />
+        </MvWrap>
+        <WorkContents
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            transition:{ duration: 0.2, delay: 0.5}
+          }}
+          exit={{
+            opacity: 0,
+            transition: { duration: 0.5}
+          }}
+        >
+          <WorkDetails>
+            <WorkDetailsHeader>
+              <WorkDetailsHeaderTitle>{work.enTitle}</WorkDetailsHeaderTitle>
+            </WorkDetailsHeader>
+            <WorkDetailsBody>
+              <WorkDetailsBodyTitle>
+                <WorkDetailsBodyTitleMain>{work.title}</WorkDetailsBodyTitleMain>
+                <WorkDetailsBodyTitleSub>{work.type}</WorkDetailsBodyTitleSub>
+              </WorkDetailsBodyTitle>
+              <WorkDetailsDesc>{work.explanation}</WorkDetailsDesc>
+              <WorkDetailsData>
+                <WorkDetailsDataItem><dt>Release</dt><dd>{work.release}</dd></WorkDetailsDataItem>
+                <WorkDetailsDataItem><dt>Role</dt><dd>{work.role}</dd></WorkDetailsDataItem>
+                <WorkDetailsDataItem><dt>Url</dt><dd><a href={work.url} target="_blank" rel="noopener noreferrer">{work.url}</a></dd></WorkDetailsDataItem>
+              </WorkDetailsData>
+            </WorkDetailsBody>
+            <WorkDetailsImageWrap>
+              <img src={work.wholeImg?.url} alt="" />
+            </WorkDetailsImageWrap>
+            <WorkDetailsExtLinkWrap>
+              <a href={work.url} target="_blank" rel="noopener noreferrer">View Site</a>
+            </WorkDetailsExtLinkWrap>
+          </WorkDetails>
+        </WorkContents>
+      </motion.div>
     </>
   );
 }
