@@ -153,7 +153,7 @@ const WorkDetails = styled.div`
 
   ${media.sm`
     margin-top: 100px;
-    width: 60%;
+    width: 75%;
   `}
 `;
 
@@ -173,11 +173,11 @@ const WorkDetailsHeaderTitle = styled(motion.h1)`
   letter-spacing: 0.02px;
   font-size: 7vw;
   font-weight: 700;
-  white-space: nowrap;
-  line-height: 1;
+  line-height: 1.25;
   height: inherit;
   display: grid;
   place-content: center;
+  text-align: center;
 `;
 
 const WorkDetailsBody = styled.div`
