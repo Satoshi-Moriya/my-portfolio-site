@@ -148,6 +148,7 @@ const StyledSwiper = styled(Swiper)`
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    cursor: pointer;
   }
 
   .swiper-button-prev {
