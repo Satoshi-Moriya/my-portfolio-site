@@ -9,6 +9,8 @@ import { usePageTransition } from "./PageTransitionContext";
 import { useRouter } from "next/router";
 
 
+const easeInOutExpo = "cubic-bezier(0.16, 1, 0.3, 1)";
+
 export default function ImageSlider({
    works,
 }: {
@@ -98,6 +100,7 @@ export default function ImageSlider({
             type: "fraction"
           }}
           modules={[Mousewheel, Pagination, Navigation]}
+          speed={1000}
         >
           {
             works.map(({ id, title, mv }, index) => (
@@ -126,6 +129,10 @@ export default function ImageSlider({
 const StyledSwiper = styled(Swiper)`
   height: 100%;
 
+  .swiper-wrapper {
+    transition-timing-function: ${easeInOutExpo};
+  }
+
   .swiper-pagination {
     text-align: center;
     position: relative;
@@ -141,6 +148,7 @@ const StyledSwiper = styled(Swiper)`
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    cursor: pointer;
   }
 
   .swiper-button-prev {
