@@ -112,7 +112,7 @@ export default function Work({
 
 const MvWrap = styled(motion.figure)`
   position: relative;
-  top: 200px;
+  top: 100px;
   z-index: -1;
 
   ${media.sm`
@@ -140,7 +140,7 @@ const WorkContents = styled(motion.main)`
   display: flex;
   justify-content: center;
   padding-bottom: 100px;
-  margin-top: 200px;
+  margin-top: 140px; // サムネ画像のtop: 100pxと40pxの余白
 
   ${media.sm`
     margin-top: 0;
@@ -158,12 +158,10 @@ const WorkDetails = styled.div`
 `;
 
 const WorkDetailsHeader = styled.div`
-  // ToDo #_nextが基準、影響範囲が広いので修正した方が良いかも
-  position: absolute;
-  top: 125px;
+  display: none;
 
   ${media.sm`
-    position: static;
+    display: block;
     height: calc(100vh - 100px);
   `}
 `;
@@ -198,7 +196,11 @@ const WorkDetailsBodyTitle = styled.div`
 `;
 
 const WorkDetailsBodyTitleMain = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
+
+  ${media.sm`
+    font-size: 32px;
+  `}
 `;
 
 const WorkDetailsBodyTitleSub = styled.p`
@@ -225,9 +227,14 @@ const WorkDetailsDataItem = styled.dl`
 
   dt {
     font-weight: 700;
-    width: 150px;
+    width: 100px;
     white-space: nowrap;
-    margin-right: 40px;
+    margin-right: 20px;
+
+    ${media.sm`
+      width: 150px;
+      margin-right: 40px;
+    `}
   }
 
   dd {
