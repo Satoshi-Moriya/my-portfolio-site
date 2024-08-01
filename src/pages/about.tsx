@@ -12,10 +12,15 @@ import Image from "next/image";
 import { media } from "@/utils/media";
 import { usePageTransition } from "@/components/PageTransitionContext";
 import { useEffect } from "react";
+import { generateMailToLink } from "@/utils/generateMailToLink";
 
+
+const mailUser = process.env.MAIL_USER || "";
+const mailDomain = process.env.MAIL_DOMAIN || "";
 
 export default function About() {
   const { setTransitionFrom } = usePageTransition();
+  const mailtoLink = generateMailToLink(mailUser, mailDomain)
 
   useEffect(() => {
     setTransitionFrom("about");
@@ -54,31 +59,31 @@ export default function About() {
             </AboutDescription>
           </AboutTextWrapper>
           <AboutExternalLinks>
-            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+            <AboutExternalLink href={mailtoLink} target="_blank" rel="noreferrer">
               <MdOutlineEmail />
               <span>Email</span>
             </AboutExternalLink>
-            <AboutExternalLink href="https://twitter.com/_moriyas" target="_blank" rel="noopener noreferrer">
+            <AboutExternalLink href="https://twitter.com/_moriyas" target="_blank" rel="noreferrer">
               <FaXTwitter />
               <span>X（旧Twitter）</span>
             </AboutExternalLink>
-            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+            <AboutExternalLink href="https://www.instagram.com/3104_moriya/" target="_blank" rel="noreferrer">
               <FaInstagram />
               <span>Instagram</span>
             </AboutExternalLink>
-            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+            <AboutExternalLink href="https://github.com/Satoshi-Moriya" target="_blank" rel="noreferrer">
               <FaGithub />
               <span>GitHub</span>
             </AboutExternalLink>
-            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+            <AboutExternalLink href="https://satoshi-moriya.com/" target="_blank" rel="noreferrer">
               <FaPencilAlt />
               <span>Blog</span>
             </AboutExternalLink>
-            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+            <AboutExternalLink href="https://www.youtube.com/@moriyasdrums" target="_blank" rel="noreferrer">
               <FaYoutube />
               <span>YouTube</span>
             </AboutExternalLink>
-            <AboutExternalLink href="https://example.com/" target="_blank" rel="noopener noreferrer">
+            <AboutExternalLink href="https://crowdworks.jp/public/employees/3837075" target="_blank" rel="noreferrer">
               <MdComputer />
               <span>CrowdWorks</span>
             </AboutExternalLink>
