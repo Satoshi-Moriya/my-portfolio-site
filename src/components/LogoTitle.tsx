@@ -24,6 +24,7 @@ const Title = styled(motion.h2)`
   white-space: nowrap;
   line-height: 1;
   position: fixed;
+  z-index: 10;
   top: 20px;
   left: 5%;
 

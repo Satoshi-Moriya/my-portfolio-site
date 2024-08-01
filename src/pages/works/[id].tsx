@@ -205,13 +205,22 @@ const WorkDetailsBodyTitleMain = styled.h2`
 `;
 
 const WorkDetailsBodyTitleSub = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   opacity: 0.6;
+
+  ${media.sm`
+    font-size: 20px;
+  `}
 `;
 
 const WorkDetailsDesc = styled.p`
   line-height: 1.8;
   margin-top: 40px;
+  font-size: 16px;
+
+  ${media.sm`
+    font-size: 18px;
+  `}
 `;
 
 const WorkDetailsData = styled.div`
@@ -220,6 +229,7 @@ const WorkDetailsData = styled.div`
 
 const WorkDetailsDataItem = styled.dl`
   display: flex;
+  align-items: center;
   word-wrap: break-word;
 
   &:not(:first-child) {
@@ -239,7 +249,7 @@ const WorkDetailsDataItem = styled.dl`
   }
 
   dd {
-    font-size: 0.875rem;
+    // font-size: 0.875rem;
     width: calc(100% - 190px);
 
     a {
