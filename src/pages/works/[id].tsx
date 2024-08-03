@@ -154,7 +154,8 @@ const WorkDetails = styled.div`
 
   ${media.sm`
     margin-top: 100px;
-    width: 75%;
+    width: 100%;
+    max-width: none;
   `}
 `;
 
@@ -164,6 +165,7 @@ const WorkDetailsHeader = styled.div`
   ${media.sm`
     display: block;
     height: calc(100vh - 100px);
+    padding: 0 50px
   `}
 `;
 
@@ -181,6 +183,12 @@ const WorkDetailsHeaderTitle = styled(motion.h1)`
 
 const WorkDetailsBody = styled.div`
 
+  ${media.sm`
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 50px;
+  `}
 `;
 
 const WorkDetailsBodyTitle = styled.div`
@@ -266,6 +274,13 @@ const WorkDetailsDataItem = styled.dl`
 
 const WorkDetailsImageWrap = styled.div`
   margin-top: 40px;
+
+  ${media.sm`
+    margin: 40px auto 0;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 50px;
+  `}
 `;
 
 const WorkDetailsExtLinkWrap = styled.div`
