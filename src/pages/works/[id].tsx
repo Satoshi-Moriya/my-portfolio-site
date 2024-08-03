@@ -132,7 +132,7 @@ const Mv = styled.img`
   object-fit: cover;
 
   ${media.sm`
-    opacity: 0.5;
+    opacity: 0.3;
   `}
 `;
 

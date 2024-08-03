@@ -195,6 +195,6 @@ const ThumbnailWrap = styled(motion.figure)`
 const Thumbnail = styled.img`
   width: 100%;
   max-height: 720px;
-  max-width: 1280px;
+  max-width: 1080px;
   object-fit: cover;
 `;
