@@ -1,4 +1,5 @@
 import { MicroCMSContentId, MicroCMSDate, MicroCMSImage } from "microcms-js-sdk";
+
 import { client } from "@/libs/client";
 import LogoTitle from "@/components/LogoTitle";
 import ImageSlider from "@/components/ImageSlider";

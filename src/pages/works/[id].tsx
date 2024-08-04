@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Work } from "../works";
-import { poppinsFont } from "../../styles/fonts";
+import { useRouter } from "next/router";
+
+import { type Work } from "@/pages/works";
+import { poppinsFont } from "@/styles/fonts";
 import { client } from "@/libs/client";
 import { usePageTransition } from "@/components/PageTransitionContext";
 import { media } from "@/utils/media";
 import LogoTitle from "@/components/LogoTitle";
-import { useRouter } from "next/router";
 
 
 export async function getStaticPaths() {

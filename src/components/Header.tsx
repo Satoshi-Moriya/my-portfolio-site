@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import NavLinks from "./NavLinks";
+import NavLinks from "@/components/NavLinks";
 import { media } from "@/utils/media";
 
 const menuHeight = {

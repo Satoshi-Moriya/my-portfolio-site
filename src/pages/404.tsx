@@ -1,7 +1,9 @@
-import LogoTitle from "@/components/LogoTitle";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import styled from "styled-components";
+
+import LogoTitle from "@/components/LogoTitle";
+
 
 export default function Custom404() {
   return (

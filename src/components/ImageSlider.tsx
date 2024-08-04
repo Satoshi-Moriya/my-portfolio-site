@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-import { Work } from "@/pages/works";
 import Link from "next/link";
-import { usePageTransition } from "./PageTransitionContext";
 import { useRouter } from "next/router";
+
+import { Work } from "@/pages/works";
+import { usePageTransition } from "@/components/PageTransitionContext";
 
 
 const easeInOutExpo = "cubic-bezier(0.16, 1, 0.3, 1)";

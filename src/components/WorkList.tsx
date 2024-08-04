@@ -1,7 +1,9 @@
-import { Work } from "@/pages/works";
 import Link from "next/link";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+
+import { Work } from "@/pages/works";
+
 
 export default function WorkList({
    works,

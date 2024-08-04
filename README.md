@@ -34,5 +34,12 @@
 
 [【JavaScript】オブジェクト・配列・関数引数の末尾カンマ](https://rennnosukesann.hatenablog.com/entry/2018/05/04/173502)
 
+### importについて
+- 書くのが楽になりそうなので、aliasを設定の上、絶対パスにする
+
+参考記事
+- [【TypeScript】importする際相対パスではなくエイリアスを使用する](https://zenn.dev/yuji6523/articles/react-absolute-path)
+
+
 ### テストについて
 画面遷移にアニメーションをつける予定で、Next.jsだと難しい印象があるので、一旦機能のテストなどはせずに、アニメーションが問題なく対応できるか開発を進めていく。（2023年12月7日）

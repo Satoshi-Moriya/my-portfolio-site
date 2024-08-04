@@ -1,7 +1,9 @@
-import { poppinsFont } from "../styles/fonts"
 import styled from "styled-components";
 import { useState } from "react";
 import { motion } from "framer-motion";
+
+import { poppinsFont } from "@/styles/fonts";
+
 
 const topLoading = {
   // whenを使ってアニメーションに順番をつけたい場合、

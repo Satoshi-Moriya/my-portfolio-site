@@ -1,7 +1,8 @@
-import { poppinsFont } from "../styles/fonts";
 import styled from "styled-components";
-import FixedBg from "@/components/FixedBg";
 import { motion } from "framer-motion";
+
+import { poppinsFont } from "@/styles/fonts";
+import FixedBg from "@/components/FixedBg";
 import { usePageTransition } from "@/components/PageTransitionContext";
 import Loading from "@/components/Loading";
 

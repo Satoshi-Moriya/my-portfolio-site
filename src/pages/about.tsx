@@ -1,4 +1,3 @@
-import LogoTitle from "@/components/LogoTitle"
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { MdOutlineEmail } from "react-icons/md";
@@ -9,9 +8,11 @@ import { FaPencilAlt } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
 import Image from "next/image";
+import { useEffect } from "react";
+
+import LogoTitle from "@/components/LogoTitle"
 import { media } from "@/utils/media";
 import { usePageTransition } from "@/components/PageTransitionContext";
-import { useEffect } from "react";
 import { generateMailToLink } from "@/utils/generateMailToLink";
 
 
