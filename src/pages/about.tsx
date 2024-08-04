@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import Image from "next/image";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
@@ -7,7 +8,6 @@ import { FaGithub } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
-import Image from "next/image";
 import { useEffect } from "react";
 
 import LogoTitle from "@/components/LogoTitle"

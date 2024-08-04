@@ -1,6 +1,6 @@
+import reset from "styled-reset";
 import type { AppProps } from "next/app";
 import { createGlobalStyle, css } from "styled-components";
-import reset from "styled-reset";
 import { AnimatePresence } from 'framer-motion'
 import { useEffect } from "react";
 import "swiper/css";

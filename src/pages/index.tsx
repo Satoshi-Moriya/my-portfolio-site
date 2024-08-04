@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-import { poppinsFont } from "@/styles/fonts";
 import FixedBg from "@/components/FixedBg";
-import { usePageTransition } from "@/components/PageTransitionContext";
 import Loading from "@/components/Loading";
+import { poppinsFont } from "@/styles/fonts";
+import { usePageTransition } from "@/components/PageTransitionContext";
 
 
 export async function getStaticProps() {

@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
 import styled from "styled-components";
+import { ReactNode } from "react";
+
 
 export default function FixedBg({
   children,

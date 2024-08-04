@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import NavLinks from "@/components/NavLinks";
 import { media } from "@/utils/media";
 
+
 const menuHeight = {
   open: {
     height: "100svh",

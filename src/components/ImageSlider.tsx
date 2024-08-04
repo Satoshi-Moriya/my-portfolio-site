@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Work } from "@/pages/works";

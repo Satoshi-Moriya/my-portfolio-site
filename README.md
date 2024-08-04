@@ -36,6 +36,7 @@
 
 ### importについて
 - 書くのが楽になりそうなので、aliasを設定の上、絶対パスにする
+- 書く順番はライブラリなどを上、自作コンポーネントを下、オブジェクト全体>特定のオブジェクト
 
 参考記事
 - [【TypeScript】importする際相対パスではなくエイリアスを使用する](https://zenn.dev/yuji6523/articles/react-absolute-path)
