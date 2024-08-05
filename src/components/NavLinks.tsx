@@ -26,6 +26,7 @@ export default function NavLinks({
   const sm = useSmMediaQuery();
 
   // ToDo 2200pxだと縦幅が大きい時やばそう
+  // ToDo 画面幅を切り替えるとwarningが出るが基本的にそのようなことはないことと、運用上今のところ問題ないので放置
   let openClipPath = "circle(2200px at calc(100% - 40px) 31px)";
   let closedClipPath = "circle(0px at calc(100% - 40px) 31px)";
 

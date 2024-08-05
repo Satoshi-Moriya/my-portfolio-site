@@ -23,6 +23,7 @@ const menuHeight = {
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
+
   const menuFunc = () => {
     setOpenMenu(!openMenu);
   }
