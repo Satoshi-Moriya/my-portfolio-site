@@ -99,9 +99,11 @@ export default function Work({
                 <WorkDetailsDataItem><dt>Url</dt><dd><a href={work.url} target="_blank" rel="noopener noreferrer">{work.url}</a></dd></WorkDetailsDataItem>
               </WorkDetailsData>
             </WorkDetailsBody>
-            <WorkDetailsImageWrap>
-              <img src={work.wholeImg?.url} alt="" />
-            </WorkDetailsImageWrap>
+            { work.wholeImg?.url &&
+              <WorkDetailsImageWrap>
+                <img src={work.wholeImg?.url} alt="" />
+              </WorkDetailsImageWrap>
+            }
             <WorkDetailsExtLinkWrap>
               <a href={work.url} target="_blank" rel="noopener noreferrer">View Site</a>
             </WorkDetailsExtLinkWrap>
