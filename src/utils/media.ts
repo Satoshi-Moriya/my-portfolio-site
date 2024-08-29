@@ -11,14 +11,16 @@ const device = {
 }
 
 export const media = {
-  xs: (...args) => css`
+  xs: (styles: TemplateStringsArray, ...interpolations: any[]) => `
     @media (min-width: ${device.xs}) {
-      ${css(...args)};
+      ${styles.join('')}
+      ${interpolations.join('')}
     }
   `,
-  sm: (...args) => css`
-    @media (min-width: ${device.sm}) {
-      ${css(...args)};
+    sm: (styles: TemplateStringsArray, ...interpolations: any[]) => `
+    @media (min-width: ${device.xs}) {
+      ${styles.join('')}
+      ${interpolations.join('')}
     }
   `,
   // md: (...args) => css`

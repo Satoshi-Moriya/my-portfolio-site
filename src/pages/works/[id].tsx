@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 
@@ -38,10 +38,13 @@ export default function Work({
 }) {
   const { setTransitionFrom } = usePageTransition();
   const router = useRouter();
-  const date = new Date(work.release)
+  const [date, setDate] = useState(new Date());
 
   useEffect(() => {
     setTransitionFrom("work");
+    if(work.release) {
+      setDate(new Date(work.release));
+    }
   }, []);
 
   // ToDo initialとanimateもこっちの処理で対応可能かも？
@@ -94,7 +97,10 @@ export default function Work({
               </WorkDetailsBodyTitle>
               <WorkDetailsDesc>{work.explanation}</WorkDetailsDesc>
               <WorkDetailsData>
-                <WorkDetailsDataItem><dt>Release</dt><dd>{date.getFullYear() + "/" + ("0"+(date.getMonth() + 1)).slice(-2)}</dd></WorkDetailsDataItem>
+                {
+                  work.release &&
+                  <WorkDetailsDataItem><dt>Release</dt><dd>{date.getFullYear() + "/" + ("0"+(date.getMonth() + 1)).slice(-2)}</dd></WorkDetailsDataItem>
+                }
                 <WorkDetailsDataItem><dt>Role</dt><dd>{work.role}</dd></WorkDetailsDataItem>
                 <WorkDetailsDataItem><dt>Url</dt><dd><a href={work.url} target="_blank" rel="noopener noreferrer">{work.url}</a></dd></WorkDetailsDataItem>
               </WorkDetailsData>

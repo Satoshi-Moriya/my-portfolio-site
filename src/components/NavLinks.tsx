@@ -108,6 +108,7 @@ const NavLink = styled.a<{ $isActive: boolean }>`
   color: #1A1A1A;
   position: relative;
   padding: 20px;
+  font-family: ${poppinsFont.style.fontFamily}, sans-serif;
 
   &:hover {
     color: #1A1A1A;
@@ -117,7 +118,6 @@ const NavLink = styled.a<{ $isActive: boolean }>`
     padding: 10px 20px;
     color: #FFFFFF;
     text-shadow: 0 1px 3px #1A1A1A;
-    font-family: ${poppinsFont.style.fontFamily}, sans-serif;
 
     &:hover {
       color: #FFFFFF;
