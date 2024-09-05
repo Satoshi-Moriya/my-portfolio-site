@@ -18,7 +18,7 @@ export const media = {
     }
   `,
     sm: (styles: TemplateStringsArray, ...interpolations: any[]) => `
-    @media (min-width: ${device.xs}) {
+    @media (min-width: ${device.sm}) {
       ${styles.join('')}
       ${interpolations.join('')}
     }
