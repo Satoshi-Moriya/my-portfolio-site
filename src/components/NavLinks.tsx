@@ -12,6 +12,7 @@ const links = [
   { name: "Top", href: "/", },
   { name: "About", href: "/about", },
   { name: "Works", href: "/works", },
+  { name: "Blog", href: "https://satoshi-moriya.com/category/tech", target: "_blank", rel: "noreferrer", },
 ];
 
 export default function NavLinks({
@@ -76,6 +77,8 @@ export default function NavLinks({
               <NavLink
                 $isActive={pathname === link.href}
                 onClick={onClick}
+                target={link.target}
+                rel={link.rel}
               >
                 {link.name}
               </NavLink>
