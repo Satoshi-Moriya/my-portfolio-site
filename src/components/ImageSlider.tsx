@@ -145,7 +145,7 @@ const StyledSwiper = styled(Swiper)`
   .swiper-button-next {
     position: relative;
     top: -94px;
-    width: 30px;
+    width: 48px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -156,7 +156,7 @@ const StyledSwiper = styled(Swiper)`
     transform: translateX(-200%);
 
     &::before {
-      content: "prev";
+      content: "< Prev";
       position: absolute;
     }
   }
@@ -165,7 +165,7 @@ const StyledSwiper = styled(Swiper)`
     transform: translateX(100%);
 
     &::before {
-      content: "next";
+      content: "Next >";
       position: absolute;
     }
   }

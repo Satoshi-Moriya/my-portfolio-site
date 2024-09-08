@@ -53,6 +53,7 @@ const GlobalStyle = createGlobalStyle<{ page: string }>`
     min-height: 100vh;
     height: 100vh;
     font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+    overflow-y: scroll;
   }
 
   #__next {
@@ -74,9 +75,5 @@ const GlobalStyle = createGlobalStyle<{ page: string }>`
       text-decoration: none;
       color: #FFFFFF;
     }
-  }
-
-  body {
-    overflow-y: scroll;
   }
 `;
