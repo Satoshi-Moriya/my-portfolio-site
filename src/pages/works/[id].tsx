@@ -290,6 +290,10 @@ const WorkDetailsImageWrap = styled.div`
     max-width: 900px;
     padding: 0 50px;
   `}
+
+  img {
+    width: 100%;
+  }
 `;
 
 const WorkDetailsExtLinkWrap = styled.div`
