@@ -48,13 +48,12 @@ export default function About() {
           <AboutTextWrapper>
             <AboutTitle>
               <h2>森屋 敏</h2>
-              <p>Web Engineer / Drummer</p>
+              <p>Data Engineer</p>
             </AboutTitle>
             <AboutDescription>
-              <p>山梨県出身、30歳。</p>
-              <p>都内の受託系の開発会社でWebエンジニアをやっております。</p>
+              <p>山梨県出身、32歳。</p>
+              <p>都内でデータエンジニアをやっております。</p>
               <p>個人でWebサイト制作のお仕事もおこなっております。</p>
-              <p>ドラムが好き。ドラマーとしても活動中。</p>
               <br />
               <p>お仕事のご依頼・ご相談などはメールや各SNSのDMからお気軽にお問い合わせください。</p>
             </AboutDescription>
@@ -64,13 +63,9 @@ export default function About() {
               <MdOutlineEmail />
               <span>Email</span>
             </AboutExternalLink>
-            <AboutExternalLink href="https://twitter.com/_moriyas" target="_blank" rel="noreferrer">
+            <AboutExternalLink href="https://x.com/_moriyas_it" target="_blank" rel="noreferrer">
               <FaXTwitter />
               <span>X（旧Twitter）</span>
-            </AboutExternalLink>
-            <AboutExternalLink href="https://www.instagram.com/3104_moriya/" target="_blank" rel="noreferrer">
-              <FaInstagram />
-              <span>Instagram</span>
             </AboutExternalLink>
             <AboutExternalLink href="https://github.com/Satoshi-Moriya" target="_blank" rel="noreferrer">
               <FaGithub />
@@ -79,10 +74,6 @@ export default function About() {
             <AboutExternalLink href="https://satoshi-moriya.com/" target="_blank" rel="noreferrer">
               <FaPencilAlt />
               <span>Blog</span>
-            </AboutExternalLink>
-            <AboutExternalLink href="https://www.youtube.com/@moriyasdrums" target="_blank" rel="noreferrer">
-              <FaYoutube />
-              <span>YouTube</span>
             </AboutExternalLink>
             <AboutExternalLink href="https://crowdworks.jp/public/employees/3837075" target="_blank" rel="noreferrer">
               <MdComputer />
